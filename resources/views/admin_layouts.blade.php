@@ -1,9 +1,4 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <!DOCTYPE html>
 <head>
 <title>Admin</title>
@@ -97,8 +92,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Danh Mục Sản Phẩm</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{URL::to('/add-category-product')}}">Thêm Sản Phẩm</a></li>
-						<li><a href="{{URL::to('/all-category-product')}}">Liệt Kê Sản Phẩm</a></li>
+						<li><a href="{{URL::to('/add-category-product')}}">Thêm Danh Mục Sản Phẩm</a></li>
+						<li><a href="{{URL::to('/all-category-product')}}">Liệt Danh Mục Kê Sản Phẩm</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Thương Hiệu Sản Phẩm</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to('/add-category-product')}}">Thêm Thương Hiệu Sản Phẩm</a></li>
+						<li><a href="{{URL::to('/all-category-product')}}">Liệt Kê Thương Hiệu Sản Phẩm</a></li>
                     </ul>
                 </li>
                 

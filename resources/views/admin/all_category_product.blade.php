@@ -4,8 +4,15 @@
     <div class="table-agile-info">
 <div class="panel panel-default">
 <div class="panel-heading">
-  Responsive Table
+  Liệt Kê Danh Mục Sản Phẩm
 </div>
+<?php
+  $message=Session::get('message');
+  if ($message) {
+      echo '<span class="text-alert">'.$message.'</span>';
+      Session::put('message',null);
+  }
+  ?>
 <div class="row w3-res-tb">
   <div class="col-sm-5 m-b-xs">
     <select class="input-sm form-control w-sm inline v-middle">
@@ -28,6 +35,7 @@
   </div>
 </div>
 <div class="table-responsive">
+  
   <table class="table table-striped b-t b-light">
     <thead>
       <tr>
@@ -38,21 +46,35 @@
         </th>
         <th>Tên</th>
         <th>Hiển Thị</th>
-        <th>Ngày Thêm</th>
+        {{-- <th>Ngày Thêm</th> --}}
         <th style="width:30px;"></th>
       </tr>
     </thead>
     <tbody>
+      @foreach ($all_category_product as $key => $cate_pro)
       <tr>
         <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-        <td>Idrawfast prototype design prototype design prototype design prototype design prototype design</td>
-        <td><span class="text-ellipsis">A/H</span></td>
-        <td><span class="text-ellipsis">123</span></td>
+        <td>{{$cate_pro->category_name}}</td>
+        <td><span class="text-ellipsis">
+          <?php
+            if ($cate_pro->category_status==1) {
+              ?>
+              <a href="{{URL::to('/active-category-product/'.$cate_pro->category_id)}}">Ẩn</a>
+              <?php
+            } else {
+              ?>
+              <a href="{{URL::to('/unactive-category-product/'.$cate_pro->category_id)}}">Hiện</a>
+              <?php
+            }
+          ?>
+        </span></td>
+        {{-- <td><span class="text-ellipsis">123</span></td> --}}
         <td>
-          <a href="" class="active" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+          <a href="{{URL::to('/edit-category-product/'.$cate_pro->category_id)}}" class="update" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+          <a onclick="return confirm('Bạn Muốn Xóa Danh Mục Này')" href="{{URL::to('/delete-category-product/'.$cate_pro->category_id)}}" class="delete" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
         </td>
       </tr>
-      
+      @endforeach
     </tbody>
   </table>
 </div>
