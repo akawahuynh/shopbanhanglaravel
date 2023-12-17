@@ -45,33 +45,41 @@
           </label>
         </th>
         <th>Tên</th>
+        <th>Giá</th>
+        <th>Ảnh</th>
+        <th>Danh Mục</th>
+        <th>Thương Hiệu</th>
         <th>Hiển Thị</th>
         {{-- <th>Ngày Thêm</th> --}}
         <th style="width:30px;"></th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($all_brand_product as $key => $brand_pro)
+      @foreach ($all_product as $key => $product)
       <tr>
         <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-        <td>{{$brand_pro->brand_name}}</td>
+        <td>{{$product->product_name}}</td>
+        <td>{{$product->product_price}}</td>
+        <td><img src="uploads/product/{{$product->product_image}}" alt="{{$product->product_image}}" width="100" height="100"></td>
+        <td>{{$product->category_name}}</td>
+        <td>{{$product->brand_name}}</td>
         <td><span class="text-ellipsis">
           <?php
-            if ($brand_pro->brand_status==1) {
+            if ($product->product_status==1) {
               ?>
-              <a href="{{URL::to('/active-brand-product/'.$brand_pro->brand_id)}}">Ẩn</a>
+              <a href="{{URL::to('/active-product/'.$product->product_id)}}">Ẩn</a>
               <?php
             } else {
               ?>
-              <a href="{{URL::to('/unactive-brand-product/'.$brand_pro->brand_id)}}">Hiện</a>
+              <a href="{{URL::to('/unactive-product/'.$product->product_id)}}">Hiện</a>
               <?php
             }
           ?>
         </span></td>
         {{-- <td><span class="text-ellipsis">123</span></td> --}}
         <td>
-          <a href="{{URL::to('/edit-brand-product/'.$brand_pro->brand_id)}}" class="update" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-          <a onclick="return confirm('Bạn Muốn Xóa Thương Hiệu Này')" href="{{URL::to('/delete-brand-product/'.$brand_pro->brand_id)}}" class="delete" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+          <a href="{{URL::to('/edit-product/'.$product->product_id)}}" class="update" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+          <a onclick="return confirm('Bạn Muốn Xóa Sản Phẩm Này')" href="{{URL::to('/delete-product/'.$product->product_id)}}" class="delete" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
         </td>
       </tr>
       @endforeach
